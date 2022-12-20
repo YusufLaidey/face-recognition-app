@@ -9,6 +9,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 // import Particles from 'react-particles-js';
 
 import './App.css';
+import Signin from './components/Signin/Signin';
 
 // const app = new Clarifai.App({
 //   apiKey: '4933e75a70d5413587dafa338ac2e37f'
@@ -32,10 +33,12 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {}
+      box: {},
+      route: 'signin'
     }
   }
-  
+  // <Particles className='particles' params={particlesOptions} />
+
   calculateFcaeLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box
     const image = document.getElementById('inputimage');
@@ -68,12 +71,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {/* <Particles className='particles' params={particlesOptions} /> */}
-        <Navigation />
+        <Navigation /> 
+        <Signin />
         <Logo />
         <Rank />
         <ImageLinkform onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
       </div>
     );
     }
